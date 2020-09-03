@@ -1,0 +1,115 @@
+body{
+    font-size: 24px;
+    text-align: center;
+    background-image: url("./background.png");
+    background-color: whitesmoke;
+}
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.icon{
+    margin: 10px;
+    color: red;
+    font-size:2rem;
+}
+
+.brand{
+    color: red !important;
+}
+
+/*//////////////////////////// table dinamic UI /////////////////////////////////*/
+.wall{
+    background-color: black !important;
+}
+
+.start{
+    background-color: blue !important; 
+}
+
+.end{
+    background-color: red !important;
+}
+
+.explored{
+    background-color: chartreuse;
+}
+
+#utils button{
+    margin: 10px 10px;
+}
+
+#utils{
+    padding: 15px;
+    margin: 10px auto;
+    width: 50%;
+    border-radius: 10px;
+    border: 3px solid rgb(149, 0, 0);
+}
+
+#starting-position, #ending-position{
+    padding: 20px 20px;
+    border: 3px solid white;
+    border-radius: 100%;
+    display: inline-block;
+    margin: 0 20px;
+}
+
+#starting-position{
+    background-color: blue;
+}
+
+#ending-position{
+    padding: 20px 20px;
+    background-color: rgb(255, 0, 0);
+    border: 3px solid white;
+    border-radius: 100%;
+    display: inline-block;
+}
+
+/*/////////////////////////// managing table aspect ///////////////////////////*/
+
+table, tr, td{
+    border : 1px solid black;
+}
+
+table{
+    border-collapse: collapse;
+    margin: 40px auto;
+    border: 5px inset red;
+    cursor: crosshair;
+}
+
+td{
+    padding: 8px;
+    background-color: whitesmoke;
+}
+
+
+/*/////////////////////////// managing navbar ///////////////////////////*/
+.navbar-brand{
+    font-family: 'Monoton', cursive;
+    font-size : 2rem;
+    
+}
+
+label{
+    margin: 0 10px;
+    color: white;
+}
+
+.dropdown-item{
+    text-align: center;
+}
+
+.dropdown-menu{
+    margin-bottom: 20px;
+}
+
+#createTable{
+    margin: 10px auto;
+}
