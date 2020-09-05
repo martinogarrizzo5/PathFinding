@@ -48,8 +48,9 @@ function manageGrid(event){
         $("table").mousedown(() => buttons.isWallPainting = true);
         $("table").mouseup(() => buttons.isWallPainting = false);
         if (buttons.isWallPainting || event.type === "click"){
-            $(event.target).removeClass();
-            $(event.target).addClass("wall");
+            if(!$(event.target).hasClass("end") && !$(event.target).hasClass("start")){
+                $(event.target).addClass("wall");
+            }
         }
     }
 }

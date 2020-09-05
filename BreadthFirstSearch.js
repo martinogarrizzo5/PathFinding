@@ -11,19 +11,30 @@ $("#Play").click(() => main());
 
 
 function main(){
-    const startPos = findStartPoint();
-    let pathQueue = [startPos];
+    let unexpectedEnd = false;
+    let pathQueue = [findStartPoint()];
     let i = 0;
     while(!$(".end").hasClass("explored")){
-        pathQueue = pathQueue.concat(findNeighbors(pathQueue[i][0], pathQueue[i][1])) 
-        i += 1;  
+        try{ 
+            pathQueue = pathQueue.concat(findNeighbors(pathQueue[i][0], pathQueue[i][1])) 
+            i += 1;  
+        }
+        catch (err){
+            console.log("unexpected end of algorithm")
+            unexpectedEnd = true;
+            break;
+        }
     }
-    console.log(pathQueue); 
+    if (!unexpectedEnd){
+        findPath();
+    }
+    reloadPath();
+
 }
 
 
 function findStartPoint(){
-    $("*").removeClass("explored");
+    $("*").removeClass(["explored", "path"]);
     return $(".start").attr("id").split("-");
 }
 
@@ -46,24 +57,50 @@ function findNeighbors(x, y, walls=findWalls()){
     x = Number(x);
     y = Number(y);
     const coord = x + "-" + y
+    if (walls.includes(coord)){return [];}
     
-    if($(`#${x + 1}-${y}`).length === 1 && !$(`#${x + 1}-${y}`).hasClass("explored") && !walls.includes(coord)){
+    if($(`#${x + 1}-${y}`).length === 1 && !$(`#${x + 1}-${y}`).hasClass("explored") ){
         neighbors.push([x + 1, y]);
-        $(`#${x + 1}-${y}`).addClass([x + "_" + y, "explored"]);
+        $(`#${x + 1}-${y}`).addClass([x + "-" + y, "explored"]);
 
     }
-    if($(`#${x - 1}-${y}`).length === 1 && !$(`#${x - 1}-${y}`).hasClass("explored") && !walls.includes(coord)){
+    if($(`#${x - 1}-${y}`).length === 1 && !$(`#${x - 1}-${y}`).hasClass("explored") ){
         neighbors.push([x - 1, y]);
-        $(`#${x - 1}-${y}`).addClass([x + "_" + y, "explored"]);
+        $(`#${x - 1}-${y}`).addClass([x + "-" + y, "explored"]);
     }
-    if($(`#${x}-${y + 1}`).length === 1 && !$(`#${x}-${y + 1}`).hasClass("explored") && !walls.includes(coord)){
+    if($(`#${x}-${y + 1}`).length === 1 && !$(`#${x}-${y + 1}`).hasClass("explored") ){
         neighbors.push([x, y + 1]);
-        $(`#${x}-${y + 1}`).addClass([x + "_" + y, "explored"]);
+        $(`#${x}-${y + 1}`).addClass([x + "-" + y, "explored"]);
     }
-    if($(`#${x}-${y - 1}`).length === 1 && !$(`#${x}-${y - 1}`).hasClass("explored") && !walls.includes(coord)){
+    if($(`#${x}-${y - 1}`).length === 1 && !$(`#${x}-${y - 1}`).hasClass("explored") ){
         neighbors.push([x, y - 1]);
-        $(`#${x}-${y - 1}`).addClass([x + "_" + y, "explored"]);
+        $(`#${x}-${y - 1}`).addClass([x + "-" + y, "explored"]);
     }
 
     return neighbors;
+}
+
+////////// create the shortest path to reach the end
+function findPath(){
+    let lastExplored = $(".end").attr("class").split(" ")[1];
+    $("#" + lastExplored).addClass("path");
+    while(!$("#" + lastExplored).hasClass("start")){
+        lastExplored = $("#" + lastExplored).attr("class").split(" ")[0];
+        $("#" + lastExplored).addClass("path");
+    }
+}
+
+
+/////// delete path exploredFrom coordinates from cells classes
+function reloadPath(){
+    const pattern = /\d-+\d/
+    $("td").map(function() {
+        const classes = this.className.split(" ")
+        if ( pattern.test(classes[0]) ){
+            $(this).removeClass(classes[0])
+        }
+        else if ( pattern.test(classes[1]) ){
+            $(this).removeClass(classes[1])
+       }
+  })
 }

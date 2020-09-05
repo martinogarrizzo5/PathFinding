@@ -1,3 +1,4 @@
+/* made by martinogarrizzo */
 body{
     font-size: 24px;
     text-align: center;
@@ -22,7 +23,7 @@ footer{
     color: red !important;
 }
 
-/*//////////////////////////// table dinamic UI /////////////////////////////////*/
+/*//////////////////////////// table pathFinding dinamic UI /////////////////////////////////*/
 .wall{
     background-color: black !important;
 }
@@ -39,6 +40,12 @@ footer{
     background-color: chartreuse;
 }
 
+.path{
+    background-color: cyan;
+}
+
+ /*/////////////////////// buttons utils ////////////////////////*/
+
 #utils button{
     margin: 10px 10px;
 }
@@ -49,6 +56,7 @@ footer{
     width: 50%;
     border-radius: 10px;
     border: 3px solid rgb(149, 0, 0);
+    background-color: rgb(226, 129, 2);
 }
 
 #starting-position, #ending-position{
@@ -69,6 +77,11 @@ footer{
     border: 3px solid white;
     border-radius: 100%;
     display: inline-block;
+}
+
+.btn-black{
+    background-color: black;
+    color: white
 }
 
 /*/////////////////////////// managing table aspect ///////////////////////////*/
