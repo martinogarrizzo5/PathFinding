@@ -37,7 +37,11 @@ footer{
 }
 
 .explored{
-    background-color: chartreuse;
+    /* background-color: chartreuse; */
+}
+
+.green{
+    background-color: yellowgreen;
 }
 
 .path{

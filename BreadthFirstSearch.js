@@ -2,9 +2,7 @@
 /// search on <td> with id="x+1, y" || "x-1, y" || "x, y-1" || "x, y+1" //////////
 /// split in x and y coordinates each id ///////////////
 /// const loc = $("#1-1").attr("id").split("-");
-
-///// TODO: Maybe use a set //////////////////////
-const shifted = [];
+let actualExplored = 0;
 
 $("#Play").click(() => main());
 
@@ -25,16 +23,32 @@ function main(){
             break;
         }
     }
-    if (!unexpectedEnd){
-        findPath();
-    }
-    reloadPath();
+
+    var explorationUI = setInterval(() => {
+        exploredUI(pathQueue, actualExplored); 
+        actualExplored += 1;
+        if(actualExplored >= pathQueue.length){
+            if (!unexpectedEnd){
+                findPath();
+            }
+            reloadPath();
+            clearInterval(explorationUI)
+        }
+    }, 5)
+    
+
 
 }
 
 
+function exploredUI(list, actual){
+    $(`#${list[actual][0]}-${list[actual][1]}`).addClass("green");
+}
+
+
 function findStartPoint(){
-    $("*").removeClass(["explored", "path"]);
+    actualExplored = 0;
+    $("*").removeClass(["explored", "path", "green"]);
     return $(".start").attr("id").split("-");
 }
 
