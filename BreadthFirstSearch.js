@@ -2,14 +2,16 @@
 /// search on <td> with id="x+1, y" || "x-1, y" || "x, y-1" || "x, y+1" //////////
 /// split in x and y coordinates each id ///////////////
 /// const loc = $("#1-1").attr("id").split("-");
+
 let actualExplored = 0;
+let unexpectedEnd = false;
 
 $("#Play").click(() => main());
 
 
 
 function main(){
-    let unexpectedEnd = false;
+    unexpectedEnd = false;
     let pathQueue = [findStartPoint()];
     let i = 0;
     while(!$(".end").hasClass("explored")){
@@ -31,6 +33,9 @@ function main(){
         if(actualExplored >= pathQueue.length){
             if (!unexpectedEnd){
                 findPath();
+            }
+            else if (unexpectedEnd){
+                $("*").removeClass(["explored", "path", "green"]);
             }
             reloadPath();
             clearInterval(explorationUI)
@@ -95,11 +100,17 @@ function findNeighbors(x, y, walls=findWalls()){
 
 ////////// create the shortest path to reach the end
 function findPath(){
-    let lastExplored = $(".end").attr("class").split(" ")[1];
-    $("#" + lastExplored).addClass("path");
-    while(!$("#" + lastExplored).hasClass("start")){
-        lastExplored = $("#" + lastExplored).attr("class").split(" ")[0];
+    try{
+        let lastExplored = $(".end").attr("class").split(" ")[1];
         $("#" + lastExplored).addClass("path");
+        while(!$("#" + lastExplored).hasClass("start")){
+            lastExplored = $("#" + lastExplored).attr("class").split(" ")[0];
+            $("#" + lastExplored).addClass("path");
+        }
+    }
+    catch(e){
+        unexpectedEnd = true;
+        $("*").removeClass(["explored", "path", "green"]);
     }
 }
 
