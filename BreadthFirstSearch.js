@@ -24,6 +24,7 @@ function main(){
         }
     }
 
+    /// animation to see the path creation
     var explorationUI = setInterval(() => {
         exploredUI(pathQueue, actualExplored); 
         actualExplored += 1;
@@ -35,8 +36,6 @@ function main(){
             clearInterval(explorationUI)
         }
     }, 5)
-    
-
 
 }
 

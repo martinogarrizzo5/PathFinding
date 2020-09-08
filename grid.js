@@ -82,6 +82,21 @@ function createTable(cols, rows){
             $("#" + j + "-" + i).last().click((event) => manageGrid(event));
         }
     }
+    const randStartX = Math.floor(Math.random() * cols);
+    const randStartY = Math.floor(Math.random() * rows);
+
+    const randEndX = Math.floor(Math.random() * cols);
+    const randEndY = Math.floor(Math.random() * rows);
+
+    if (randEndX !== randStartX || randStartY !== randEndY){
+        $("#" + randStartX + "-" + randStartY).addClass("start");
+        $("#" + randEndX + "-" + randEndY).addClass("end");
+    }
+    else{
+        $("#0-0").addClass("start");
+        $("#19-19").addClass("end");
+    }
+
 }
 
 // handle destruction of table
