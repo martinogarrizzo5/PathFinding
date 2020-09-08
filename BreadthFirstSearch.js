@@ -71,31 +71,33 @@ function findWalls(){
 
 // find  IDs equals ot  "x+1, y" and "x-1, y" and "x, y-1" and "x, y+1" //////////
 function findNeighbors(x, y, walls=findWalls()){
-    const neighbors = [];
-    x = Number(x);
-    y = Number(y);
-    const coord = x + "-" + y
-    if (walls.includes(coord)){return [];}
-    
-    if($(`#${x + 1}-${y}`).length === 1 && !$(`#${x + 1}-${y}`).hasClass("explored") ){
-        neighbors.push([x + 1, y]);
-        $(`#${x + 1}-${y}`).addClass([x + "-" + y, "explored"]);
+    if (!unexpectedEnd){
+        const neighbors = [];
+        x = Number(x);
+        y = Number(y);
+        const coord = x + "-" + y
+        if (walls.includes(coord)){return [];}
+        
+        if($(`#${x + 1}-${y}`).length === 1 && !$(`#${x + 1}-${y}`).hasClass("explored") ){
+            neighbors.push([x + 1, y]);
+            $(`#${x + 1}-${y}`).addClass([x + "-" + y, "explored"]);
 
-    }
-    if($(`#${x - 1}-${y}`).length === 1 && !$(`#${x - 1}-${y}`).hasClass("explored") ){
-        neighbors.push([x - 1, y]);
-        $(`#${x - 1}-${y}`).addClass([x + "-" + y, "explored"]);
-    }
-    if($(`#${x}-${y + 1}`).length === 1 && !$(`#${x}-${y + 1}`).hasClass("explored") ){
-        neighbors.push([x, y + 1]);
-        $(`#${x}-${y + 1}`).addClass([x + "-" + y, "explored"]);
-    }
-    if($(`#${x}-${y - 1}`).length === 1 && !$(`#${x}-${y - 1}`).hasClass("explored") ){
-        neighbors.push([x, y - 1]);
-        $(`#${x}-${y - 1}`).addClass([x + "-" + y, "explored"]);
-    }
+        }
+        if($(`#${x - 1}-${y}`).length === 1 && !$(`#${x - 1}-${y}`).hasClass("explored") ){
+            neighbors.push([x - 1, y]);
+            $(`#${x - 1}-${y}`).addClass([x + "-" + y, "explored"]);
+        }
+        if($(`#${x}-${y + 1}`).length === 1 && !$(`#${x}-${y + 1}`).hasClass("explored") ){
+            neighbors.push([x, y + 1]);
+            $(`#${x}-${y + 1}`).addClass([x + "-" + y, "explored"]);
+        }
+        if($(`#${x}-${y - 1}`).length === 1 && !$(`#${x}-${y - 1}`).hasClass("explored") ){
+            neighbors.push([x, y - 1]);
+            $(`#${x}-${y - 1}`).addClass([x + "-" + y, "explored"]);
+        }
 
-    return neighbors;
+        return neighbors;
+    }
 }
 
 ////////// create the shortest path to reach the end

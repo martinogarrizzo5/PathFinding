@@ -82,12 +82,15 @@ function createTable(cols, rows){
             $("#" + j + "-" + i).last().click((event) => manageGrid(event));
         }
     }
-    const randStartX = Math.floor(Math.random() * cols);
-    const randStartY = Math.floor(Math.random() * rows);
+    const randStartX = Math.floor(Math.random() * rows);
+    const randStartY = Math.floor(Math.random() * cols);
 
-    const randEndX = Math.floor(Math.random() * cols);
-    const randEndY = Math.floor(Math.random() * rows);
+    const randEndX = Math.floor(Math.random() * rows);
+    const randEndY = Math.floor(Math.random() * cols);
 
+    console.log(cols + " " + rows)
+    console.log(randStartX + " " + randStartY);
+    console.log(randEndX + " " + randEndY);
     if (randEndX !== randStartX || randStartY !== randEndY){
         $("#" + randStartX + "-" + randStartY).addClass("start");
         $("#" + randEndX + "-" + randEndY).addClass("end");
