@@ -1,69 +1,82 @@
 /* made by martinogarrizzo */
-body{
+body {
     font-size: 24px;
     text-align: center;
     background-image: url("./background.png");
     background-color: whitesmoke;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-footer{
+footer {
     position: fixed;
     bottom: 0;
     width: 100%;
     font-size: 1rem;
 }
 
-.icon{
+.icon {
     margin: 10px;
     color: red;
-    font-size:2rem;
+    font-size: 2rem;
 }
 
-.brand{
+.brand {
     color: red !important;
 }
 
 /*//////////////////////////// table pathFinding dinamic UI /////////////////////////////////*/
-.wall{
+.wall {
     background-color: black !important;
 }
 
-.start{
-    background-color: blue !important; 
+.start {
+    background-color: blue !important;
 }
 
-.end{
+.end {
     background-color: red !important;
 }
 
-.explored{
+.explored {
     /* background-color: chartreuse; */
 }
 
-.green{
+.green {
     background-color: yellowgreen;
 }
 
-.path{
+.path {
     background-color: cyan;
 }
 
- /*/////////////////////// buttons utils ////////////////////////*/
+/*/////////////////////// buttons utils ////////////////////////*/
 
-#utils button{
-    margin: 10px 10px;
+.buttons {
+    display: grid;
+    justify-content: center;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 150px));
+    gap: 20px;
+
+    margin-bottom: 30px;
 }
 
-#utils{
+.buttons button {
+}
+
+#utils {
     padding: 15px;
-    margin: 10px auto;
+    margin: 10px auto 50px;
     width: 50%;
     border-radius: 10px;
     border: 3px solid rgb(149, 0, 0);
-    background-color: rgb(226, 129, 2);
+    background-color: rgb(235, 140, 16);
 }
 
-#starting-position, #ending-position{
+#starting-position,
+#ending-position {
     padding: 20px 20px;
     border: 3px solid white;
     border-radius: 100%;
@@ -71,11 +84,11 @@ footer{
     margin: 0 20px;
 }
 
-#starting-position{
+#starting-position {
     background-color: blue;
 }
 
-#ending-position{
+#ending-position {
     padding: 20px 20px;
     background-color: rgb(255, 0, 0);
     border: 3px solid white;
@@ -83,50 +96,84 @@ footer{
     display: inline-block;
 }
 
-.btn-black{
+.btn-black {
     background-color: black;
-    color: white
+    color: white;
 }
 
 /*/////////////////////////// managing table aspect ///////////////////////////*/
 
-table, tr, td{
-    border : 1px solid black;
+table,
+tr,
+td {
+    border: 1px solid rgb(100, 100, 100);
 }
 
-table{
+table {
     border-collapse: collapse;
     margin: 40px auto;
     border: 5px inset red;
     cursor: crosshair;
 }
 
-td{
+td {
     padding: 8px;
     background-color: whitesmoke;
 }
 
-
 /*/////////////////////////// managing navbar ///////////////////////////*/
-.navbar-brand{
-    font-family: 'Monoton', cursive;
-    font-size : 2rem;
-    
+.navbar-brand {
+    font-family: "Monoton", cursive;
+    font-size: 2rem;
 }
 
-label{
-    margin: 0 10px;
+.nav-items {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+label {
     color: white;
+    width: 60px;
+    margin-right: 10px;
 }
 
-.dropdown-item{
-    text-align: center;
-}
-
-.dropdown-menu{
-    margin-bottom: 20px;
-}
-
-#createTable{
+#createTable {
     margin: 10px auto;
+}
+
+.footer {
+    position: static;
+    padding: 8px;
+
+    margin-top: auto;
+}
+
+.input-row {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 20px;
+    justify-content: center;
+}
+
+.input {
+    display: flex;
+}
+
+/* ////////////////////////////  Media Queries ////////////////////////////*/
+@media (max-width: 600px) {
+    #utils {
+        width: 90%;
+    }
+
+    .input-row {
+        grid-template-columns: 1fr;
+    }
+
+    .buttons {
+        grid-template-columns: repeat(2, 80px);
+    }
 }
